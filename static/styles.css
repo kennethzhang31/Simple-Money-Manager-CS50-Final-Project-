@@ -1,0 +1,795 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: box;
+}
+
+:root{
+    --grid-radius: 6px;
+    --grid-padding: 6px;
+}
+
+body{
+    background-color: white;
+}
+
+.main-nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    font-family: 'Roboto', sans-serif;
+    background-color: #1f1e1e;
+    min-height: 8vh;
+    z-index: 0;
+}
+
+div.logo span{
+    color: orange;
+}
+
+.logo a{
+    font-weight: bold;
+    text-decoration: none;
+    color: #f2ebeb;
+}
+
+.nav-links {
+    text-decoration: none;
+    display: flex;
+    justify-content: space-around;
+    width: 40%;
+}
+
+.nav-links li {
+    list-style: none;
+}
+
+.nav-links a {
+    color: #f2ebeb;
+    text-decoration: none;
+}
+
+.sandwich{
+    display: none;
+    cursor: pointer;
+}
+
+.sandwich div{
+    width: 20px;
+    height: 3px;
+    background-color: white;
+    margin: 5px;
+    border-radius: 3px;
+    transition: all 0.1s ease;
+}
+
+@media screen and (max-width: 900px){
+    body {
+        overflow-x: hidden;
+    }
+    .nav-links {
+        position: absolute;
+        right: 0px;
+        height: 92vh;
+        top: 8vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #1f1e1e;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in;
+        z-index: 1;
+    }
+    .sandwich{
+        display: block;
+    }
+}
+
+.nav-active{
+    transform: translateX(0%);
+}
+
+@keyframes linkFadeIn{
+    from{
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+.cross .slice1{
+    transform: rotate(-45deg) translate(-3px, 3px);
+}
+
+.cross .slice2{
+    display: none;
+}
+
+.cross .slice3{
+    transform: rotate(45deg) translate(-3px, -3px);
+}
+
+.item{
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.grid-container{
+    display: grid;
+    width: 80%;
+    height: 100vh;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1.5fr 0.8fr 1fr 1fr, 1fr;
+    grid-template-areas:
+        "profile profile money money money"
+        "profile profile top1 top2 top3"
+        "recent recent recent expense expense"
+        "recent recent recent income income"
+        "space space space space space";
+    grid-gap: 0.8rem;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    text-align: center;
+}
+
+.space{
+    margin-top: 20px;
+    background-color: white;
+    height: 2vh;
+    padding: var(--grid-padding);
+    border-radius: var(--grid-radius);
+}
+
+.profile{
+    background-color: #2e343b;
+    grid-area: profile;
+    padding: var(--grid-padding);
+    border-radius: var(--grid-radius);
+}
+.profile .profile-image{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: auto;
+    margin-top: 50px;
+    background-color: white;
+    padding: 20px;
+}
+.profile .user-info{
+    padding-top: 10px;
+}
+
+.money{
+    background-color: #46c75f;
+    grid-area: money;
+    padding: var(--grid-padding);
+    border-radius: var(--grid-radius);
+    padding-top: 30px;
+}
+.money .sum{
+    margin: auto;
+    font-size: 4.5vw;
+    font-weight: bolder;
+}
+
+.top1{
+    background-color: #4668c7;
+    grid-area: top1;
+    padding: var(--grid-padding);
+    border-radius: var(--grid-radius);
+    padding-top: 30px;
+}
+
+.top2{
+    background-color: #fccf03;
+    grid-area: top2;
+    padding: var(--grid-padding);
+    border-radius: var(--grid-radius);
+    padding-top: 30px;
+}
+
+.top3{
+    background-color: #9746c7;
+    grid-area: top3;
+    padding: var(--grid-padding);
+    border-radius: var(--grid-radius);
+    padding-top: 30px;
+}
+
+.t-in{
+    margin: auto;
+    font-size: 2.5vw;
+    font-weight: bolder;
+    padding: 10px;
+}
+
+@media screen and (min-width: 800px){
+    .t-in{
+        font-size: 1.5vw;
+    }
+
+}
+
+.recent{
+    background-color: #faa434;
+    grid-area: recent;
+    padding: 20px;
+    border-radius: var(--grid-radius);
+}
+
+.expense{
+    background-color: #d93327;
+    grid-area: expense;
+    padding: var(--grid-padding);
+    border-radius: var(--grid-radius);
+    display: block;
+}
+.expense-in{
+    padding: 15px;
+    margin: auto;
+    margin-top: 30px;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    max-width: 78%;
+}
+.expense input, .income input{
+    padding: 7px;
+    border-radius: 6px;
+    border: 1px solid white;
+}
+.category{
+    padding: 5px;
+}
+.category label{
+    padding-right: 5px;
+    padding-left: 2px;
+}
+
+.exin-label{
+    text-align: start;
+}
+.desc{
+    padding: 5px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.date{
+    padding: 5px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.exin-amount{
+    padding: 5px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.desc label, .date label, .exin-amount label{
+    margin-right: 10px;
+}
+
+.income{
+    background-color: #27d971;
+    grid-area: income;
+    padding: var(--grid-padding);
+    border-radius: var(--grid-radius);
+}
+
+.sub-button{
+    padding: 5px;
+}
+
+.expense-in .desc, .expense-in .expense-amount, .expense-in .date{
+    padding-left: 18px;
+}
+
+.in{
+    color: #6beb34;
+}
+.out{
+    color: #eb3d34;
+}
+
+main{
+    display: block;
+}
+
+.reg-log{
+    margin: auto;
+    margin-top: 50px;
+    top: 30%;
+    width: 50%;
+    position: absolute;
+    background-color: #1f1e1e;
+    border-radius: 10px;
+    border: 2px solid #bed5e6;
+    transform: translate(50%);
+    font-family: 'Roboto', sans-serif;
+}
+.reg-log h2{
+    color: white;
+    padding-top: 20px;
+    text-align: center;
+    margin-bottom: -25px;
+}
+.reg-log-in form{
+    padding: 20px 40px;
+    margin-top: 50px;
+    background-color: white;
+}
+.form-space{
+    margin-top: 5px;
+}
+
+.form-space input{
+    width: 100%;
+    padding: 0 5px;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid #c9c9c9;
+}
+.reg-log-in button{
+    width: 100%;
+    height: 50px;
+    border: 1px solid;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-left: 2%;
+    font-size: 1.8vh;
+    border: 1px solid #c9c9c9;
+}
+.mylog{
+    color: orange;
+}
+
+@media screen and (min-width: 800px){
+    .reg-log{
+        width: 440.5px;
+        right: 50%;
+    }
+}
+
+.calendar{
+    font-family: 'Roboto', sans-serif;
+    background-color: white;
+    padding: 15px;
+    max-width: 500px;
+}
+.calendar-container{
+    background-color: #1f1e1e;;
+    padding: 25px;
+    max-width: 475px;
+    margin: 0 auto;
+    overflow: none;
+    margin-top: 20px;
+}
+
+.next-previous-buttons{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+#previous{
+    padding: 5px;
+    margin-right: 200px;
+    position: absolute;
+}
+#next{
+    padding: 5px;
+    margin-left: 200px;
+    position: absolute;
+}
+#monthYear{
+    padding-left: 8px;
+    padding-right: 8px;
+}
+.calendar-table{
+    width: 100%;
+}
+.calendar-table td, .table-calendar th {
+    padding: 5px;
+    border: 1px solid #e2e2e2;
+    text-align: center;
+    vertical-align: top;
+}
+.date-picker.selected {
+    font-weight: bold;
+}
+.date-picker:nth-child(1) {
+    color: red;
+}
+
+.calendar-result{
+    display: flex;
+    justify-content: center;
+    max-width: 475px;
+    padding: 25px;
+    background-color: #1f1e1e;
+    margin: auto;
+    margin-top: 10px;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 2px;
+}
+.calendar-result-table{
+    border-color: 3px;
+    width: 475px;
+    background-color: white;
+    text-align: center;
+    border-collapse: collapse;
+}
+.calendar-result-table tr{
+    height: 30px;
+}
+.calendar-result-table th{
+    width: 28%;
+    color: #fdfdfd;
+    border-top: 1.5px solid black;
+    background-color: orange;
+}
+.calendar-result-table td{
+    border-top: 1.5px solid;
+}
+
+.table-recent{
+    width: 90%;
+    margin: auto;
+    border-collapse: collapse;
+}
+.table-recent tr{
+    line-height: 30px;
+}
+.recent-table-data-body td{
+    text-align: center;
+    vertical-align: center;
+    border-top: 1px solid black;
+    color: #ffffff;
+}
+.recent-table-data-head th{
+    color: #ffffff;
+}
+.recent-date{
+    width: 20%;
+}
+.recent-amount{
+    width: 24%;
+}
+.recent-category{
+    width: 28%;
+}
+.recent-desc{
+    width: 28%;
+}
+
+.user-grid-container{
+    display: grid;
+    width: 80%;
+    height: 100vh;
+    margin: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1.5fr 1fr 2fr 2fr;
+    grid-template-areas:
+        "user-profile"
+        "stats"
+        "history"
+        "blankspace";
+    grid-gap: 0.8rem;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    text-align: center;
+}
+
+.user-profile{
+    background-color: #2e343b;
+    grid-area: user-profile;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: var(--grid-padding);
+    border-radius: var(--grid-radius);
+    font-family: 'Roboto', sans-serif;
+    margin-top: 20px;
+}
+
+.user-profile .user-image{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: auto;
+    margin-top: 50px;
+    background-color: white;
+    padding: 20px;
+}
+
+.user-profile .username{
+    color: white;
+    font-size: 3vh;
+    margin: 10px;
+    margin-bottom: 20px;
+}
+
+.settings{
+    text-align: left;
+    height: 80%;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: space-evenly;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.settings input{
+    margin-top: 5px;
+}
+
+.settings button{
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.stats{
+    display: flex;
+    grid-area: stats;
+    justify-content: space-around;
+    padding: 40px;
+    background-color: #2e343b;
+}
+
+.totinex{
+    margin:auto;
+}
+.totin{
+    color: #27d971;
+}
+.totex{
+    color: #d93327;
+}
+.totan{
+    color: yellow;
+}
+
+.history{
+    background-color: #2e343b;
+    grid-area: history;
+    padding: 20px;
+    border-radius: var(--grid-radius);
+}
+
+.blankspace{
+    grid-area: blankspace;
+    background-color: white;
+    min-height: 30px;
+}
+
+.confirm-container{
+    z-index: 9999;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.confirm-open{
+    display: flex;
+}
+
+.confirm{
+    width: 500px;
+    height: 200px;
+    margin:auto;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.confirm span{
+    color: red;
+}
+
+.confirm header{
+    background-color: rgba(67, 72, 74, 0.3);
+    padding: 10px;
+    height: 20%;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+.confirm section{
+    text-align: center;
+    padding: 20px;
+}
+
+.confirm footer{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.confirm .cancel{
+    background-color: grey;
+    border: none;
+    border-radius: 3px;
+    padding: 6px;
+    font-size: 1.05em;
+    cursor: pointer;
+}
+
+.confirm .yes{
+    background-color: tomato;
+    border: none;
+    border-radius: 3px;
+    padding: 6px;
+    font-size: 1.05em;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 900px){
+
+    .grid-container{
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1.5fr 0.8fr 1fr 1fr 1.8fr;
+        grid-template-areas:
+            "money money money"
+            "top1 top2 top3"
+            "expense expense expense"
+            "income income income"
+            "recent recent recent"
+    }
+
+    .space {
+        display: none;
+    }
+
+    .recent {
+        margin-bottom: 20px;e
+    }
+
+    .profile{
+        display: none;
+    }
+
+    .money .sum{
+        font-size: 7vw;
+    }
+
+    .desc{
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .date{
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .expense-amount{
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .exin-label{
+        text-align: center;
+    }
+    .expense-in .desc, .expense-in .exin-amount, .expense-in .date{
+        padding-left: 0px;
+    }
+
+    .exin-label{
+        text-align: center;
+    }
+    .desc{
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .date{
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .exin-amount{
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .recent{
+        margin-bottom: 20px;
+    }
+
+    .table-recent{
+        width: 100%;
+    }
+    .table-recent td{
+        text-align: center;
+        vertical-align: center;
+    }
+
+    .user-grid-container{
+        display: grid;
+        width: 80%;
+        height: 100vh;
+        margin: auto;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1.5fr 1fr 2fr 2fr;
+        grid-template-areas:
+            "user-profile"
+            "stats"
+            "history"
+            "blankspace";
+        grid-gap: 0.8rem;
+        font-family: 'Roboto', sans-serif;
+        color: white;
+    }
+    .user-profile{
+        background-color: #2e343b;
+        grid-area: user-profile;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: var(--grid-padding);
+        border-radius: var(--grid-radius);
+        font-family: 'Roboto', sans-serif;
+        margin-top: 20px;
+    }
+    .user-profile .username{
+        color: white;
+        font-size: 3vh;
+        margin: 10px;
+    }
+
+    .settings{
+        text-align: center;
+        height: 80%;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        padding-bottom: 40px;
+    }
+
+    .settings input{
+        margin-top: 5px;
+    }
+
+    .settings button{
+        padding: 5px;
+        margin-top: 5px;
+    }
+    .settings h2{
+        margin-bottom: 15px;
+    }
+    .settings .delT{
+        margin-bottom: 15px;
+    }
+    .settings .picture{
+        width: 80%;
+    }
+    .settings .fileUpload{
+        width: 20vw;
+    }
+
+}

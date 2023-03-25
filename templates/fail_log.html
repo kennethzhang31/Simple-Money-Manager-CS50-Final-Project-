@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block main %}
+    <div class="reg-log">
+        <h2><span class="mylog">My</span>Nance Login</h2>
+        <div class="reg-log-in">
+            <form action="/login", method="post">
+                <div>
+                    <input autocomplete="off" autofocus id="username" name="username" placeholder="Username" value="{{ username }}" type="text">
+                </div>
+                <div>
+                    <input autocomplete="off" autofocus id="password" name="password" placeholder="Password" type="text">
+                </div>
+                <div>
+                    <p class="error_message" >{{ error }}</p>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

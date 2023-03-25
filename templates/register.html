@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <div class="reg-log">
+        <h2><span class="mylog">My</span>Nance Register</h2>
+        <div class="reg-log-in">
+            <form action="/register", method="post">
+                <div class="form-space">
+                    <input autocomplete="off" autofocus id="username" name="username" placeholder="Username" type="text">
+                </div>
+                <div class="form-space">
+                    <input autocomplete="off" autofocus id="password" name="password" placeholder="Password" type="password">
+                </div>
+                <div class="form-space">
+                    <input autocomplete="off" autofocus id="confirmation" name="confirmation" placeholder="Confirm Password" type="password">
+                </div>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

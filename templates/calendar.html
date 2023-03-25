@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <link href="../static/styles.css" rel="stylesheet">
+
+        <title>MyNance</title>
+
+    </head>
+    <body>
+        <nav class="main-nav">
+            <div class="logo">
+                <h2><a href="/"><span>My</span>Nance</a></h2>
+            </div>
+
+                <ul class="nav-links">
+                    <li> <a href="/">Home</a></li>
+                    <li> <a href="/user">User</a></li>
+                    <li> <a href="/calendar">Calendar</a></li>
+                    <li> <a href="/logout">Logout</a></li>
+                </ul>
+                <div class="sandwich">
+                    <div class="slice1"></div>
+                    <div class="slice2"></div>
+                    <div class="slice3"></div>
+                </div>
+
+        </nav>
+
+        <main>
+            <div class="calendar-container">
+                <div class="calendar">
+                    <div class="next-previous-buttons">
+                        <button id="previous" onclick="previous()">&#8249;</button>
+                        <h3 id="monthYear"></h3>
+                        <button id="next" onclick="next()">&#8250;</button>
+                    </div>
+                    <table class="calendar-table" id="calendar-table">
+                        <thead id="thead-main"></thead>
+                        <tbody id="calendar-body"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="calendar-result">
+                <table class="calendar-result-table">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="record-body"></tbody>
+                </table>
+            </div>
+        </main>
+
+        <script src="static/tools.js"></script>
+        <script src="static/calendar.js"></script>
+        <script>
+            async function lookup(e) {
+                let url = '/lookup?q=' + e.dataset.year + "-" + e.dataset.month + "-" +  e.dataset.date;
+                let response = await fetch(url);
+                let data = await response.json();
+                let recordBody = document.getElementById("record-body");
+                recordBody.innerHTML = "";
+                let html = "";
+
+                for (let i in data) {
+                    let value = data[i].amount;
+                    let category = data[i].type;
+
+                    let desc = data[i];
+
+                    category = (category == 'in') ? 'Income' : 'Expense';
+                    let num = parseInt(i) + 1;
+                    if (category === 'Income'){
+                        html += "<tr> <td style='color: green;'>" + num + "</td>" + "<td style='color: green;'>" + category + "</td>" + "<td class= 'record-" + category + "' style='color: green;'>" + value + "</td> </tr>";
+                    }
+                    else{
+                        html += "<tr> <td style='color: red;'>" + num + "</td>" + "<td style='color: red;'>" + category + "</td>" + "<td class= 'record-" + category + "' style='color: red;'>" + value + "</td> </tr>";
+                    }
+                }
+                recordBody.innerHTML = html;
+            }
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <link href="static/styles.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" ref="stylesheet">
+        <script src="https://kit.fontawesome.com/c6b4509dc7.js" crossorigin="anonymous"></script>
+
+        <title>MyNance</title>
+
+    </head>
+    <body>
+        <nav class="main-nav">
+            <div class="logo">
+                <h3><a href="/"><span>My</span>Nance</a></h3>
+            </div>
+            {% if session["user_id"] %}
+                <ul class="nav-links">
+                    <li> <a href="/">Home</a></li>
+                    <li> <a href="/user">User</a></li>
+                    <li> <a href="/calendar">Calendar</a></li>
+                    <li> <a href="/logout">Logout</a></li>
+                </ul>
+            {% else %}
+                <ul class="nav-links">
+                    <li> <a href="/register">Register</a></li>
+                    <li> <a href="/login">Login</a></li>
+                </ul>
+            {% endif %}
+                <div class="sandwich">
+                    <div class="slice1"></div>
+                    <div class="slice2"></div>
+                    <div class="slice3"></div>
+                </div>
+        </nav>
+        <main>
+        {% block main %}{% endblock %}
+        </main>
+
+        <script src="static/tools.js"></script>
+    </body>
+
+</html>

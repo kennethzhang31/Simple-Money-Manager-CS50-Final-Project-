@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Users
+{% endblock %}
+
+{% block main %}
+    <div class="user-grid-container">
+        <div class="user-profile">
+            <div class="user">
+                <img class="user-image" src="{{ url_for('static', filename='profilePictures/' + picPath) }}"><img>
+                <div class="username">
+                    <h3>{{ username }}</h3>
+                </div>
+            </div>
+            <div class="settings">
+                <h2>User Settings</h2>
+                <div class="delT">
+                    <h3>Delete Transactions</h3>
+                    <button id="delete-transactions" name="delTr" onClick="openConfirm()">Delete Transacations</button>
+                </div>
+                <div class="picture">
+                    <form action="/profilePic" method="post" class="uploadPic" enctype="multipart/form-data">
+                        <label><h3>Change Picture: </h3></label>
+                        <input type="file" name="file" class="fileUpload">
+                        <input type="submit" name="submit-image" value=Upload>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="stats">
+            <div class="totinex">
+                <h3>Total Income: </h3>
+                <h3><span class="totin">${{ totalIncome }}</span></h3>
+            </div>
+            <div class="totinex">
+                <h3>Total Transactions: </h3>
+                <h3><span class="totan">{{ totalTransactions }}</span></h3>
+            </div>
+            <div class="totinex">
+                <h3>Total Expenses: </h3>
+                <h3><span class="totex">${{ totalExpenses }}</span></h3>
+            </div>
+        </div>
+        <div class="history">
+            <table class="table-recent">
+                <thead class="recent-table-data-head">
+                    <tr>
+                        <th class="recent-date">Date</th>
+                        <th class="recent-amount">Amount</th>
+                        <th class="recent-category">Category</th>
+                        <th class="recent-desc">Desc</th>
+                    </tr>
+                </thead>
+                <tbody class="recent-table-data-body">
+                    {% for i in range(count) %}
+                        <tr>
+                            <td>{{ date[i] }}</td>
+                            <td class="{{ type }}">{{ amount[i] }}</td>
+                            <td>{{ category[i] }}</td>
+                            <td>{{ desc[i] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="blankspace"></div>
+    </div>
+    <div class="confirm-container">
+        <div class="confirm">
+            <header>Are you sure you want to delete <span>ALL</span> of your transactions?</header>
+            <section><span>!! </span>There is no undoing this action<span> !!</span></section>
+            <footer>
+                <button class="cancel" name="cancel-button" onClick="closeConfirm()">Cancel</button>
+                <form action="/delete" method="post">
+                    <button action="/delete" class="yes" name="confirm-button" type="submit" onClick="">Confirm</button>
+                </form>
+            </footer>
+        </div>
+    </div>
+{% endblock %}

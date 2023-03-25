@@ -1,0 +1,184 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <link href="./static/styles.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" ref="stylesheet">
+        <script src="https://kit.fontawesome.com/c6b4509dc7.js" crossorigin="anonymous"></script>
+
+        <title>MyNance</title>
+
+    </head>
+    <body>
+        <nav class="main-nav">
+            <div class="logo">
+                <h2><a href="/"><span>My</span>Nance</a></h3>
+            </div>
+
+                <ul class="nav-links">
+                    <li> <a href="/">Home</a></li>
+                    <li> <a href="/user">User</a></li>
+                    <li> <a href="/calendar">Calendar</a></li>
+                    <li> <a href="/logout">Logout</a></li>
+                </ul>
+                <div class="sandwich">
+                    <div class="slice1"></div>
+                    <div class="slice2"></div>
+                    <div class="slice3"></div>
+                </div>
+        </nav>
+        <div class="grid-container">
+            <div class="profile">
+                <img class="profile-image" src="{{ url_for('static', filename='profilePictures/' + picPath) }}"></img>
+                <div class="user-info">
+                    <h2>Hello, {{ username }}</h2>
+                </div>
+
+            </div>
+            <div class="money">
+                <div>
+                    <i class="fa-solid fa-money-bill-1 fa-3x"></i>
+                </div>
+                <div class="sum">
+                    <p>$ {{ money }}</p>
+                </div>
+                <div>
+                    Balance
+                </div>
+            </div>
+
+            <div class="top1">
+                <div>
+                    <div class="icon">
+                        <i class="{{ onetwothree[0]['code'] }} fa-2x"></i>
+                    </div>
+                    <div class="t-in">
+                        <p>$ {{ onetwothree[0]["expense"] }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="top2">
+                <div>
+                    <div class="icon">
+                        <i class="{{ onetwothree[1]['code'] }} fa-2x"></i>
+                    </div>
+                    <div class="t-in">
+                        <p>$ {{ onetwothree[1]["expense"] }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="top3">
+                <div>
+                    <div class="icon">
+                        <i class="{{ onetwothree[2]['code'] }} fa-2x"></i>
+                    </div>
+                    <div class="t-in">
+                        <p>$ {{ onetwothree[2]["expense"] }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recent">
+
+                <table class="table-recent">
+                    <thead class="recent-table-data-head">
+                        <tr>
+                            <th class="recent-date">Date</th>
+                            <th class="recent-amount">Amount</th>
+                            <th class="recent-category">Category</th>
+                            <th class="recent-desc">Desc</th>
+                        </tr>
+                    </thead>
+                    <tbody class="recent-table-data-body">
+                        {% for i in range(count) %}
+                            <tr>
+                                <td>{{ date[i] }}</td>
+                                <td class="{{ type }}">{{ amount[i] }}</td>
+                                <td>{{ category[i] }}</td>
+                                <td>{{ desc[i] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+
+
+            <div class="expense">
+                <div class="expense-in">
+                    <form action="/expense" method="post" class="expense">
+                        <label class="exin-label">
+                            <h2>Add Expense</h2>
+                        </label>
+                        <div class="exin-amount">
+                            <label>Amount</label>
+                            <input autocomplete="off" autofocus id="amount" name="amount" placeholder="Amount" type="number">
+                        </div>
+                        <div class="desc">
+                            <label>Desc</label>
+                            <input autocomplete="off" autofocus id="description" name="description" placeholder="Description" type="text">
+                        </div>
+                        <div class="date">
+                            <label>Date</label>
+                            <input autocomplete="off" autofocus id="date" name="date" placeholder="Date" type="date">
+                        </div>
+                        <div class="category">
+                            <input type="radio" id="food_drink" name="category" value="food_drink">
+                            <label><i class="fa-solid fa-utensils"></i></label>
+                            <input type="radio" id="health" name="category" value="health">
+                            <label><i class="fa-solid fa-kit-medical"></i></label>
+                            <input type="radio" id="education" name="category" value="education">
+                            <label><i class="fa-solid fa-book"></i></label>
+                            <input type="radio" id="self_imprv" name="category" value="self_imprv">
+                            <label><i class="fa-solid fa-person"></i></label>
+                            <input type="radio" id="clothing" name="category" value="clothing">
+                            <label><i class="fa-solid fa-shirt"></i></label>
+                            <input type="radio" id="transport" name="category" value="transport">
+                            <label><i class="fa-solid fa-bus"></i></label>
+                            <input type="radio" id="others" name="category" value="others">
+                            <label><i class="fa-solid fa-star"></i></label>
+                        </div>
+                        <button class="sub-button" type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <div class="income">
+                <div class="expense-in">
+                    <form action="/income" method="post" class="income">
+                        <label class="exin-label">
+                            <h2>Add Income</h2>
+                        </label>
+                        <div class="exin-amount">
+                            <label>Amount</label>
+                            <input autocomplete="off" autofocus id="amount" name="amount" placeholder="Amount" type="number">
+                        </div>
+                        <div class="desc">
+                            <label>Desc</label>
+                            <input autocomplete="off" autofocus id="description" name="description" placeholder="Description" type="text">
+                        </div>
+                        <div class="date">
+                            <label>Date</label>
+                            <input autocomplete="off" autofocus id="date" name="date" placeholder="Date" type="date">
+                        </div>
+                        <div class="category">
+                            <input type="radio" id="cash" name="category" value="cash">
+                            <label><i class="fa-solid fa-sack-dollar"></i></label>
+                            <input type="radio" id="account" name="category" value="account">
+                            <label><i class="fa-solid fa-vault"></i></label>
+                            <input type="radio" id="debit" name="category" value="debit">
+                            <label><i class="fa-solid fa-credit-card"></i></label>
+                        </div>
+                        <button class="sub-button" type="submit">Submit</button>
+                    </form>
+            </div>
+            <div class="space"></div>
+        </div>
+
+        <script src="static/tools.js"></script>
+    </body>
+
+</html>
